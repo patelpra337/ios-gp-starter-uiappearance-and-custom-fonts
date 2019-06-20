@@ -12,6 +12,7 @@ class SignupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupAppearances()
 
         guard AuthenticationHelper.currentUser != nil else { return }
         
@@ -24,6 +25,12 @@ class SignupViewController: UIViewController {
         AuthenticationHelper.setCurrentUser(to: username)
         
         performSegue(withIdentifier: "ViewMessageList", sender: nil)
+    }
+    
+    private func setupAppearances() {
+        self.view.backgroundColor = AppearanceHelper.backgroundGray
+        usernameTextField.font = AppearanceHelper.typerighterFont(with: .callout, pointSize: 28)
+        AppearanceHelper.style(button: signupButton)
     }
     
     @IBOutlet weak var signupButton: UIButton!

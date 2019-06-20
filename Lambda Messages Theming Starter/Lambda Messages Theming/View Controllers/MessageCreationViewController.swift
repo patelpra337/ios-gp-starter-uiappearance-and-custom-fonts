@@ -12,6 +12,7 @@ class MessageCreationViewController: UIViewController, UINavigationBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupAppearances()
 
         navigationBar.delegate = self
     }
@@ -38,6 +39,21 @@ class MessageCreationViewController: UIViewController, UINavigationBarDelegate {
     
     @IBAction func discardMessage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupAppearances() {
+        self.messageTextView.backgroundColor = AppearanceHelper.backgroundGray
+        self.messageTextView.textColor = .white
+        self.messageTextView.layer.borderColor = UIColor.white.cgColor
+        self.messageTextView.layer.borderWidth = 0.5
+        self.messageTextView.layer.cornerRadius = 8.0
+        self.messageTextView.font = AppearanceHelper.typerighterFont(with: .body, pointSize: 28)
+        self.messageTextView.keyboardAppearance = .dark
+        
+        self.view.backgroundColor = AppearanceHelper.backgroundGray
+        
+        AppearanceHelper.style(button: clearTextButton)
+        AppearanceHelper.style(button: sendMessageButton)
     }
     
     var messageController: MessageController?
